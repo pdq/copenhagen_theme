@@ -4102,7 +4102,7 @@ ul {
   text-decoration: none;
 }
 
-.search-results-sidebar .filters-collapsed .multibrand-filters-list li:nth-child(1n + 6) {
+.search-results-sidebar .filters-collapsed .multibrand-filter-list li:nth-child(1n + 6) {
   display: none;
 }
 

@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // If the search results filters have more than 5 help-centers/categories collapse them
-  const subfiltersList = document.querySelectorAll(".multibrand-filters-list");
+  const subfiltersList = document.querySelectorAll(".multibrand-filter-list");
   Array.prototype.forEach.call(subfiltersList, function(filter) {
     if (filter.children.length > 5) {
 
