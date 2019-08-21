@@ -35,19 +35,17 @@
       text-decoration: none;
     }
 
-    .multibrand-filters {
-      &.filters-collapsed .multibrand-filters-list li:nth-child(1n + 6) {
+    &.filters-collapsed .multibrand-filters-list li:nth-child(1n + 6) {
+      display: none;
+    }
+
+    .see-all-filters-trigger {
+      cursor: pointer;
+      display: block;
+      padding: 15px;
+
+      &[aria-hidden="true"] {
         display: none;
-      }
-
-      .see-all-filters-trigger {
-        cursor: pointer;
-        display: block;
-        padding: 15px;
-
-        &[aria-hidden="true"] {
-          display: none;
-        }
       }
     }
   }
