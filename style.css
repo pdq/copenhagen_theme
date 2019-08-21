@@ -4188,6 +4188,26 @@ ul {
   margin: 0 5px;
 }
 
+.search-result-sidebar a {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-result-sidebar .multibrand-filters.filters-collapsed .multibrand-filters-list li:nth-child(1n + 6) {
+  display: none;
+}
+
+.search-result-sidebar .multibrand-filters .see-all-filters-trigger {
+  cursor: pointer;
+  display: block;
+  padding: 15px;
+}
+
+.search-result-sidebar .multibrand-filters .see-all-filters-trigger[aria-hidden="true"] {
+  display: none;
+}
+
 /* Non-latin search results highlight */
 /* Add a yellow background for Chinese */
 html[lang|="zh"] .search-result-description em {
