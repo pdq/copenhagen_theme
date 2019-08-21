@@ -202,20 +202,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // If the search results filters have more than 5 help-centers/categories collapse them
-  const seeAllFiltersTrigger = document.querySelector(".see-all-filters-trigger");
   const subfiltersList = document.querySelectorAll(".multibrand-filters-list");
-
-  Array.from(subfiltersList).map(function(filters) {
-    if (filters.children.length > 5) {
+  Array.prototype.forEach.call(subfiltersList, function(filter) {
+    if (filter.children.length > 5) {
 
       // Unhide the show more button
-      var trigger = filters.querySelector(".see-all-filters-trigger");
+      var trigger = filter.querySelector(".see-all-filters-trigger");
       trigger.setAttribute("aria-hidden", false);
 
       // Add event handler
       trigger.addEventListener("click", function(e) {
           trigger.parentNode.removeChild(trigger);
-          filters.parentNode.classList.remove("filters-collapsed")
+          filter.parentNode.classList.remove("filters-collapsed")
       })
     }
   });
