@@ -1,12 +1,16 @@
-document.addEventListener('DOMContentLoaded', function() {
-  function closest (element, selector) {
+redirectBrokenLinks(); // Redirect based on URL, no need to wait for the page to load
+
+document.addEventListener("DOMContentLoaded", function() {
+  function closest(element, selector) {
     if (Element.prototype.closest) {
       return element.closest(selector);
     }
     do {
-      if (Element.prototype.matches && element.matches(selector)
-        || Element.prototype.msMatchesSelector && element.msMatchesSelector(selector)
-        || Element.prototype.webkitMatchesSelector && element.webkitMatchesSelector(selector)) {
+      if (
+        (Element.prototype.matches && element.matches(selector)) ||
+        (Element.prototype.msMatchesSelector && element.msMatchesSelector(selector)) ||
+        (Element.prototype.webkitMatchesSelector && element.webkitMatchesSelector(selector))
+      ) {
         return element;
       }
       element = element.parentElement || element.parentNode;
@@ -15,50 +19,58 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // social share popups
-  Array.prototype.forEach.call(document.querySelectorAll('.share a'), function(anchor) {
-    anchor.addEventListener('click', function(e) {
+  Array.prototype.forEach.call(document.querySelectorAll(".share a"), function(anchor) {
+    anchor.addEventListener("click", function(e) {
       e.preventDefault();
-      window.open(this.href, '', 'height = 500, width = 500');
+      window.open(this.href, "", "height = 500, width = 500");
     });
   });
 
   // In some cases we should preserve focus after page reload
   function saveFocus() {
     var activeElementId = document.activeElement.getAttribute("id");
-    sessionStorage.setItem('returnFocusTo', '#' + activeElementId);
+    sessionStorage.setItem("returnFocusTo", "#" + activeElementId);
   }
-  var returnFocusTo = sessionStorage.getItem('returnFocusTo');
+  var returnFocusTo = sessionStorage.getItem("returnFocusTo");
   if (returnFocusTo) {
-    sessionStorage.removeItem('returnFocusTo');
+    sessionStorage.removeItem("returnFocusTo");
     var returnFocusToEl = document.querySelector(returnFocusTo);
     returnFocusToEl && returnFocusToEl.focus && returnFocusToEl.focus();
   }
 
   // show form controls when the textarea receives focus or backbutton is used and value exists
-  var commentContainerTextarea = document.querySelector('.comment-container textarea'),
-    commentContainerFormControls = document.querySelector('.comment-form-controls, .comment-ccs');
+  var commentContainerTextarea = document.querySelector(".comment-container textarea"),
+    commentContainerFormControls = document.querySelector(".comment-form-controls, .comment-ccs");
 
   if (commentContainerTextarea) {
-    commentContainerTextarea.addEventListener('focus', function focusCommentContainerTextarea() {
-      commentContainerFormControls.style.display = 'block';
-      commentContainerTextarea.removeEventListener('focus', focusCommentContainerTextarea);
+    commentContainerTextarea.addEventListener("focus", function focusCommentContainerTextarea() {
+      commentContainerFormControls.style.display = "block";
+      commentContainerTextarea.removeEventListener("focus", focusCommentContainerTextarea);
     });
 
-    if (commentContainerTextarea.value !== '') {
-      commentContainerFormControls.style.display = 'block';
+    if (commentContainerTextarea.value !== "") {
+      commentContainerFormControls.style.display = "block";
     }
   }
 
   // Expand Request comment form when Add to conversation is clicked
-  var showRequestCommentContainerTrigger = document.querySelector('.request-container .comment-container .comment-show-container'),
-    requestCommentFields = document.querySelectorAll('.request-container .comment-container .comment-fields'),
-    requestCommentSubmit = document.querySelector('.request-container .comment-container .request-submit-comment');
+  var showRequestCommentContainerTrigger = document.querySelector(
+      ".request-container .comment-container .comment-show-container"
+    ),
+    requestCommentFields = document.querySelectorAll(
+      ".request-container .comment-container .comment-fields"
+    ),
+    requestCommentSubmit = document.querySelector(
+      ".request-container .comment-container .request-submit-comment"
+    );
 
   if (showRequestCommentContainerTrigger) {
-    showRequestCommentContainerTrigger.addEventListener('click', function() {
-      showRequestCommentContainerTrigger.style.display = 'none';
-      Array.prototype.forEach.call(requestCommentFields, function(e) { e.style.display = 'block'; });
-      requestCommentSubmit.style.display = 'inline-block';
+    showRequestCommentContainerTrigger.addEventListener("click", function() {
+      showRequestCommentContainerTrigger.style.display = "none";
+      Array.prototype.forEach.call(requestCommentFields, function(e) {
+        e.style.display = "block";
+      });
+      requestCommentSubmit.style.display = "inline-block";
 
       if (commentContainerTextarea) {
         commentContainerTextarea.focus();
@@ -67,33 +79,45 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Mark as solved button
-  var requestMarkAsSolvedButton = document.querySelector('.request-container .mark-as-solved:not([data-disabled])'),
-    requestMarkAsSolvedCheckbox = document.querySelector('.request-container .comment-container input[type=checkbox]'),
-    requestCommentSubmitButton = document.querySelector('.request-container .comment-container input[type=submit]');
+  var requestMarkAsSolvedButton = document.querySelector(
+      ".request-container .mark-as-solved:not([data-disabled])"
+    ),
+    requestMarkAsSolvedCheckbox = document.querySelector(
+      ".request-container .comment-container input[type=checkbox]"
+    ),
+    requestCommentSubmitButton = document.querySelector(
+      ".request-container .comment-container input[type=submit]"
+    );
 
   if (requestMarkAsSolvedButton) {
-    requestMarkAsSolvedButton.addEventListener('click', function () {
-      requestMarkAsSolvedCheckbox.setAttribute('checked', true);
+    requestMarkAsSolvedButton.addEventListener("click", function() {
+      requestMarkAsSolvedCheckbox.setAttribute("checked", true);
       requestCommentSubmitButton.disabled = true;
-      this.setAttribute('data-disabled', true);
+      this.setAttribute("data-disabled", true);
       // Element.closest is not supported in IE11
-      closest(this, 'form').submit();
+      closest(this, "form").submit();
     });
   }
 
   // Change Mark as solved text according to whether comment is filled
-  var requestCommentTextarea = document.querySelector('.request-container .comment-container textarea');
+  var requestCommentTextarea = document.querySelector(
+    ".request-container .comment-container textarea"
+  );
 
   if (requestCommentTextarea) {
-    requestCommentTextarea.addEventListener('input', function() {
-      if (requestCommentTextarea.value === '') {
+    requestCommentTextarea.addEventListener("input", function() {
+      if (requestCommentTextarea.value === "") {
         if (requestMarkAsSolvedButton) {
-          requestMarkAsSolvedButton.innerText = requestMarkAsSolvedButton.getAttribute('data-solve-translation');
+          requestMarkAsSolvedButton.innerText = requestMarkAsSolvedButton.getAttribute(
+            "data-solve-translation"
+          );
         }
         requestCommentSubmitButton.disabled = true;
       } else {
         if (requestMarkAsSolvedButton) {
-          requestMarkAsSolvedButton.innerText = requestMarkAsSolvedButton.getAttribute('data-solve-and-submit-translation');
+          requestMarkAsSolvedButton.innerText = requestMarkAsSolvedButton.getAttribute(
+            "data-solve-and-submit-translation"
+          );
         }
         requestCommentSubmitButton.disabled = false;
       }
@@ -101,90 +125,98 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Disable submit button if textarea is empty
-  if (requestCommentTextarea && requestCommentTextarea.value === '') {
+  if (requestCommentTextarea && requestCommentTextarea.value === "") {
     requestCommentSubmitButton.disabled = true;
   }
 
   // Submit requests filter form on status or organization change in the request list page
-  Array.prototype.forEach.call(document.querySelectorAll('#request-status-select, #request-organization-select'), function(el) {
-    el.addEventListener('change', function(e) {
-      e.stopPropagation();
-      saveFocus();
-      closest(this, 'form').submit();
-    });
-  });
+  Array.prototype.forEach.call(
+    document.querySelectorAll("#request-status-select, #request-organization-select"),
+    function(el) {
+      el.addEventListener("change", function(e) {
+        e.stopPropagation();
+        saveFocus();
+        closest(this, "form").submit();
+      });
+    }
+  );
 
   // Submit requests filter form on search in the request list page
-  var quickSearch = document.querySelector('#quick-search');
-  quickSearch && quickSearch.addEventListener('keyup', function(e) {
-    if (e.keyCode === 13) { // Enter key
-      e.stopPropagation();
-      saveFocus();
-      closest(this, 'form').submit();
-    }
-  });
+  var quickSearch = document.querySelector("#quick-search");
+  quickSearch &&
+    quickSearch.addEventListener("keyup", function(e) {
+      if (e.keyCode === 13) {
+        // Enter key
+        e.stopPropagation();
+        saveFocus();
+        closest(this, "form").submit();
+      }
+    });
 
   function toggleNavigation(toggle, menu) {
-    var isExpanded = menu.getAttribute('aria-expanded') === 'true';
-    menu.setAttribute('aria-expanded', !isExpanded);
-    toggle.setAttribute('aria-expanded', !isExpanded);
+    var isExpanded = menu.getAttribute("aria-expanded") === "true";
+    menu.setAttribute("aria-expanded", !isExpanded);
+    toggle.setAttribute("aria-expanded", !isExpanded);
   }
 
   function closeNavigation(toggle, menu) {
-    menu.setAttribute('aria-expanded', false);
-    toggle.setAttribute('aria-expanded', false);
+    menu.setAttribute("aria-expanded", false);
+    toggle.setAttribute("aria-expanded", false);
     toggle.focus();
   }
 
-  var burgerMenu = document.querySelector('.header .icon-menu');
-  var userMenu = document.querySelector('#user-nav');
+  var burgerMenu = document.querySelector(".header .icon-menu");
+  var userMenu = document.querySelector("#user-nav");
 
-  burgerMenu.addEventListener('click', function(e) {
+  burgerMenu.addEventListener("click", function(e) {
     e.stopPropagation();
     toggleNavigation(this, userMenu);
   });
 
-  burgerMenu.addEventListener('keyup', function(e) {
-    if (e.keyCode === 13) { // Enter key
+  burgerMenu.addEventListener("keyup", function(e) {
+    if (e.keyCode === 13) {
+      // Enter key
       e.stopPropagation();
       toggleNavigation(this, userMenu);
     }
   });
 
-  userMenu.addEventListener('keyup', function(e) {
-    if (e.keyCode === 27) { // Escape key
+  userMenu.addEventListener("keyup", function(e) {
+    if (e.keyCode === 27) {
+      // Escape key
       e.stopPropagation();
       closeNavigation(burgerMenu, this);
     }
   });
 
   if (userMenu.children.length === 0) {
-    burgerMenu.style.display = 'none';
+    burgerMenu.style.display = "none";
   }
 
   // Toggles expanded aria to collapsible elements
-  var collapsible = document.querySelectorAll('.collapsible-nav, .collapsible-sidebar');
+  var collapsible = document.querySelectorAll(".collapsible-nav, .collapsible-sidebar");
 
   Array.prototype.forEach.call(collapsible, function(el) {
-    var toggle = el.querySelector('.collapsible-nav-toggle, .collapsible-sidebar-toggle');
+    var toggle = el.querySelector(".collapsible-nav-toggle, .collapsible-sidebar-toggle");
 
-    el.addEventListener('click', function(e) {
+    el.addEventListener("click", function(e) {
       toggleNavigation(toggle, this);
     });
 
-    el.addEventListener('keyup', function(e) {
-      if (e.keyCode === 27) { // Escape key
+    el.addEventListener("keyup", function(e) {
+      if (e.keyCode === 27) {
+        // Escape key
         closeNavigation(toggle, this);
       }
     });
   });
 
   // Submit organization form in the request page
-  var requestOrganisationSelect = document.querySelector('#request-organization select');
+  var requestOrganisationSelect = document.querySelector("#request-organization select");
 
   if (requestOrganisationSelect) {
-    requestOrganisationSelect.addEventListener('change', function() {
-      closest(this, 'form').submit();
+    requestOrganisationSelect.addEventListener("change", function() {
+      closest(this, "form").submit();
     });
   }
 
@@ -201,3 +233,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+function redirectBrokenLinks() {
+  if (
+    window.location.href.includes("/knowledge-base/") ||
+    window.location.href.includes("/posts/")
+  ) {
+    let titleRegex = /(?<=\/knowledge-base\/).*|(?<=\/posts\/).*/gm;
+    let title = window.location.href.match(titleRegex)[0].replace(/-/gm, "+");
+    window.location.href =
+      "https://adminarsenal1560455590.zendesk.com/hc/en-us/articles/search?query=" + title;
+  }
+}
