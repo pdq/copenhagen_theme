@@ -235,12 +235,17 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function redirectBrokenLinks() {
-  if (
-    window.location.href.includes("/knowledge-base/") ||
-    window.location.href.includes("/posts/")
-  ) {
-    let titleRegex = /(\/knowledge-base\/)(.*)|(\/posts\/)(.*)/gm;
-    let title = window.location.href.match(titleRegex)[1].replace(/-/gm, "+");
+  if (window.location.href.includes("/knowledge-base/")) {
+    let title = window.location.href
+      .match(/\/knowledge-base\//gm)[0]
+      .replace("/knowledge-base/", "")
+      .replace(/-/gm, "+");
+    window.location.href = "https://adminarsenal1560455590.zendesk.com/hc/search?query=" + title;
+  } else if (window.location.href.includes("/posts/")) {
+    let title = window.location.href
+      .match(/\/posts\//gm)[0]
+      .replace("/posts/", "")
+      .replace(/-/gm, "+");
     window.location.href = "https://adminarsenal1560455590.zendesk.com/hc/search?query=" + title;
   }
 }
