@@ -239,9 +239,8 @@ function redirectBrokenLinks() {
     window.location.href.includes("/knowledge-base/") ||
     window.location.href.includes("/posts/")
   ) {
-    let titleRegex = /(?<=\/knowledge-base\/).*|(?<=\/posts\/).*/gm;
-    let title = window.location.href.match(titleRegex)[0].replace(/-/gm, "+");
-    window.location.href =
-      "https://adminarsenal1560455590.zendesk.com/hc/en-us/articles/search?query=" + title;
+    let titleRegex = /(\/knowledge-base\/)(.*)|(\/posts\/)(.*)/gm;
+    let title = window.location.href.match(titleRegex)[1].replace(/-/gm, "+");
+    window.location.href = "https://adminarsenal1560455590.zendesk.com/hc/search?query=" + title;
   }
 }
