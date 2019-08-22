@@ -241,7 +241,10 @@ function redirectBrokenLinks() {
       .replace("/knowledge-base/", "")
       .replace(/-/gm, "+");
     window.location.href = "https://adminarsenal1560455590.zendesk.com/hc/search?query=" + title;
-  } else if (window.location.href.includes("/posts/")) {
+  } else if (
+    window.location.href.includes("/posts/") &&
+    !window.location.href.includes("/community/posts/")
+  ) {
     let title = window.location.href
       .match(/\/posts\/.*/gm)[0]
       .replace("/posts/", "")
