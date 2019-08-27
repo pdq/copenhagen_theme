@@ -4174,3 +4174,67 @@ html[lang|="ru"] .search-result-description em,
 html[lang|="th"] .search-result-description em {
   font-style: bold;
 }
+
+/***** The place for standard PDQ modifications *****/
+/* Danger class for big red danger things */
+.Danger {
+  color: yellow;
+  background-color: #990000;
+  padding: 10px;
+  border: 10px solid yellow;
+  -webkit-animation: flash linear 0.25s infinite;
+  animation: flash linear 0.25s infinite;
+}
+
+/* The animations are just temporary sillyness.*/
+@-webkit-keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    color: blue;
+  }
+  50% {
+    background-color: red;
+  }
+  75% {
+    color: yellow;
+  }
+  100% {
+    opacity: 1;
+    border: none;
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    color: blue;
+  }
+  50% {
+    background-color: red;
+  }
+  75% {
+    color: yellow;
+  }
+  100% {
+    opacity: 1;
+    border: none;
+  }
+}
+
+/*Word wrap enabled for code blocks*/
+pre {
+  white-space: pre-wrap !important;
+  /* css-3 */
+  white-space: -moz-pre-wrap !important;
+  /* Mozilla, since 1999 */
+  white-space: -pre-wrap !important;
+  /* Opera 4-6 */
+  white-space: -o-pre-wrap !important;
+  /* Opera 7 */
+  word-wrap: break-word !important;
+  /* Internet Explorer 5.5+ */
+}

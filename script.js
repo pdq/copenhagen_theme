@@ -1,6 +1,9 @@
 redirectBrokenLinks(); // Redirect based on URL, no need to wait for the page to load
 
 document.addEventListener("DOMContentLoaded", function() {
+  //Assign highlight.js formatting to pre code blocks:
+  codeHighlighting();
+
   function closest(element, selector) {
     if (Element.prototype.closest) {
       return element.closest(selector);
@@ -251,4 +254,11 @@ function redirectBrokenLinks() {
       .replace(/-/gm, "+");
     window.location.href = "https://adminarsenal1560455590.zendesk.com/hc/search?query=" + title;
   }
+}
+
+function codeHighlighting() {
+  //Highlight code in <pre> tags created with the content editor
+  $("pre").each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
 }
