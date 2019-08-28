@@ -729,15 +729,21 @@ ul {
 
 /***** Hero component *****/
 .hero {
-  background-image: url($homepage_background_image);
-  background-position: center;
+  background-image: url($assets-pdq-background-support-svg), url($homepage_background_image);
+  background-position: bottom right, center;
   /*background-size: cover;*/
-  background-size: contain;
+  background-size: auto 20%, cover;
   background-repeat: no-repeat;
   height: 300px;
   padding: 0 20px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    background-size: auto 25%, cover;
+  }
 }
 
 .hero-inner {
@@ -1988,7 +1994,7 @@ ul {
 
 /***** Community *****/
 .community-hero {
-  background-image: url($community_background_image);
+  background-image: url($assets-pdq-background-support-svg), url($community_background_image);
   margin-bottom: 10px;
 }
 

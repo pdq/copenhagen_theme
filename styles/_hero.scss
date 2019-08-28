@@ -1,14 +1,17 @@
 /***** Hero component *****/
 .hero {
-  background-image: url($homepage_background_image);
-  background-position: center;
+  background-image: url($assets-pdq-background-support-svg), url($homepage_background_image);
+  background-position: bottom right, center;
   /*background-size: cover;*/
-  background-size: contain;
+  background-size: auto 20%, cover;
   background-repeat: no-repeat;
   height: 300px;
   padding: 0 20px;
   text-align: center;
   width: 100%;
+  @include tablet {
+    background-size: auto 25%, cover;
+  }
 
   &-inner {
     @include vertical-align;
