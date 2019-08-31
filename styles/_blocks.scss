@@ -41,6 +41,11 @@
       }
     }
 
+    &.invisible {
+      visibility: hidden;
+      margin-bottom: 0;
+    }
+
     &-internal {
       background-color: transparent;
       border: 1px solid $border-color;
@@ -52,7 +57,9 @@
         position: relative;
       }
 
-      a { color: $text_color; }
+      a {
+        color: $text_color;
+      }
     }
   }
 

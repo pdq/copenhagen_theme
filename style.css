@@ -878,6 +878,11 @@ ul {
   text-decoration: none;
 }
 
+.blocks-item.invisible {
+  visibility: hidden;
+  margin-bottom: 0;
+}
+
 .blocks-item-internal {
   background-color: transparent;
   border: 1px solid #ddd;
@@ -1400,20 +1405,27 @@ ul {
   max-width: 100%;
 }
 
-.article-body ul, .article-body ol {
+.article-body ul,
+.article-body ol {
   padding-left: 20px;
   list-style-position: outside;
   margin: 20px 0 20px 20px;
 }
 
-[dir="rtl"] .article-body ul, [dir="rtl"] .article-body ol {
+[dir="rtl"] .article-body ul, [dir="rtl"]
+.article-body ol {
   padding-right: 20px;
   padding-left: 0;
   margin-left: 0;
   margin-right: 20px;
 }
 
-.article-body ul > ul, .article-body ol > ol, .article-body ol > ul, .article-body ul > ol, .article-body li > ul, .article-body li > ol {
+.article-body ul > ul,
+.article-body ol > ol,
+.article-body ol > ul,
+.article-body ul > ol,
+.article-body li > ul,
+.article-body li > ol {
   margin: 0;
 }
 
@@ -1427,10 +1439,7 @@ ul {
 
 .article-body code {
   background: darken($background_color, 3%);
-  border: 1px solid #ddd;
   border-radius: 3px;
-  padding: 0 5px;
-  margin: 0 2px;
 }
 
 .article-body pre {
@@ -1937,20 +1946,27 @@ ul {
   max-width: 100%;
 }
 
-.comment-body ul, .comment-body ol {
+.comment-body ul,
+.comment-body ol {
   padding-left: 20px;
   list-style-position: outside;
   margin: 20px 0 20px 20px;
 }
 
-[dir="rtl"] .comment-body ul, [dir="rtl"] .comment-body ol {
+[dir="rtl"] .comment-body ul, [dir="rtl"]
+.comment-body ol {
   padding-right: 20px;
   padding-left: 0;
   margin-left: 0;
   margin-right: 20px;
 }
 
-.comment-body ul > ul, .comment-body ol > ol, .comment-body ol > ul, .comment-body ul > ol, .comment-body li > ul, .comment-body li > ol {
+.comment-body ul > ul,
+.comment-body ol > ol,
+.comment-body ol > ul,
+.comment-body ul > ol,
+.comment-body li > ul,
+.comment-body li > ol {
   margin: 0;
 }
 
@@ -1964,10 +1980,7 @@ ul {
 
 .comment-body code {
   background: darken($background_color, 3%);
-  border: 1px solid #ddd;
   border-radius: 3px;
-  padding: 0 5px;
-  margin: 0 2px;
 }
 
 .comment-body pre {
@@ -2073,7 +2086,7 @@ ul {
 
 /***** Community *****/
 .community-hero {
-  background-image: url($assets-pdq-background-support-svg), url($community_background_image);
+  background-image: url($assets-pdq-background-community-svg), url($community_background_image);
   margin-bottom: 10px;
 }
 
@@ -2519,20 +2532,27 @@ ul {
   max-width: 100%;
 }
 
-.post-body ul, .post-body ol {
+.post-body ul,
+.post-body ol {
   padding-left: 20px;
   list-style-position: outside;
   margin: 20px 0 20px 20px;
 }
 
-[dir="rtl"] .post-body ul, [dir="rtl"] .post-body ol {
+[dir="rtl"] .post-body ul, [dir="rtl"]
+.post-body ol {
   padding-right: 20px;
   padding-left: 0;
   margin-left: 0;
   margin-right: 20px;
 }
 
-.post-body ul > ul, .post-body ol > ol, .post-body ol > ul, .post-body ul > ol, .post-body li > ul, .post-body li > ol {
+.post-body ul > ul,
+.post-body ol > ol,
+.post-body ol > ul,
+.post-body ul > ol,
+.post-body li > ul,
+.post-body li > ol {
   margin: 0;
 }
 
@@ -2546,10 +2566,7 @@ ul {
 
 .post-body code {
   background: darken($background_color, 3%);
-  border: 1px solid #ddd;
   border-radius: 3px;
-  padding: 0 5px;
-  margin: 0 2px;
 }
 
 .post-body pre {
@@ -4312,7 +4329,7 @@ html[lang|="th"] .search-result-description em {
   }
 }
 
-/*Word wrap enabled for code blocks*/
+/*Word wrap enabled for pre (code) blocks*/
 pre {
   white-space: pre-wrap !important;
   /* css-3 */
