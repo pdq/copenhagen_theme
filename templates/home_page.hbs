@@ -12,16 +12,16 @@
         {{#each categories}}
         {{#each sections}}
         <li class="article-blocks-item">
-          <h3 class="article-blocks-item-title">
-            <a href='{{url}}' class="article-blocks-item-link">
-              {{name}}
-            </a>
-          </h3>
-          <div class="article-blocks-grow">
-            {{#each articles}}
-            <a href='{{url}}' class="article-blocks-item-description">{{title}}</a>
-            {{/each}}
-          </div>
+
+          <a href='{{url}}' class="article-blocks-item-link">
+            <h3 class="article-blocks-item-title">{{name}}</h3>
+
+            </h3>
+            <div class="article-blocks-grow">
+              {{#each articles}}
+              <a href='{{url}}' class="article-blocks-item-description">{{title}}</a>
+              {{/each}}
+            </div>
 
         </li>
         {{/each}}

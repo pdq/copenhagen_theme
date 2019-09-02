@@ -31,13 +31,15 @@
     max-width: 100%;
     position: relative;
 
+    &:hover .article-blocks-grow,
     &:focus .article-blocks-grow,
-    &:focus-within .article-blocks-grow,
-    &:hover .article-blocks-grow {
-      visibility: visible;
-      opacity: 1;
-      // transform: translateY(0%);
-      transition-delay: 0s;
+    &:active .article-blocks-grow {
+      @media (hover: hover), (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        visibility: visible;
+        opacity: 1;
+        // transform: translateY(0%);
+        transition-delay: 0s;
+      }
     }
 
     &:hover,
@@ -92,7 +94,6 @@
 
   &-item-link {
     color: $brand_color;
-    padding: 20px 30px;
 
     &:hover,
     &:focus,
@@ -102,8 +103,7 @@
   }
 
   &-item-title {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 25px 0px;
     text-align: center;
   }
 
