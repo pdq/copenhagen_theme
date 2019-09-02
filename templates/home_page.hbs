@@ -17,9 +17,11 @@
               {{name}}
             </a>
           </h3>
-          {{#each articles}}
-          <a href='{{url}}' class="article-blocks-item-description">{{title}}</a>
-          {{/each}}
+          <div class="article-blocks-grow">
+            {{#each articles}}
+            <a href='{{url}}' class="article-blocks-item-description">{{title}}</a>
+            {{/each}}
+          </div>
 
         </li>
         {{/each}}
@@ -38,16 +40,18 @@
               Documentation
             </a>
           </h3>
-          <a href='https://link.pdq.com/docs-pdqdeploy?Getting%20Started.pdf'
-            class="article-blocks-item-description">Deploy Getting Started Guide</a>
-          <a href='https://link.pdq.com/?docs-pdqdeploy' class="article-blocks-item-description">Deploy
-            Documentation</a>
+          <div class="article-blocks-grow">
+            <a href='https://link.pdq.com/docs-pdqdeploy?Getting%20Started.pdf'
+              class="article-blocks-item-description">Deploy Getting Started Guide</a>
+            <a href='https://link.pdq.com/?docs-pdqdeploy' class="article-blocks-item-description">Deploy
+              Documentation</a>
 
-          <a href='https://link.pdq.com/docs-pdqinventory?Getting%20Started.pdf'
-            class="article-blocks-item-description">Inventory
-            Getting Started Guide</a>
-          <a href='https://link.pdq.com/?docs-pdqinventory' class="article-blocks-item-description">Inventory
-            Documentation</a>
+            <a href='https://link.pdq.com/docs-pdqinventory?Getting%20Started.pdf'
+              class="article-blocks-item-description">Inventory
+              Getting Started Guide</a>
+            <a href='https://link.pdq.com/?docs-pdqinventory' class="article-blocks-item-description">Inventory
+              Documentation</a>
+          </div>
         </li>
 
         {{!-- These two invisible flex boxes prevent the bottom sections from expanding --}}

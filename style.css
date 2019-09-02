@@ -952,6 +952,7 @@ ul {
   justify-content: flex-start;
   margin: 0 0 30px;
   max-width: 100%;
+  position: relative;
 }
 
 @media (min-width: 768px) {
@@ -960,13 +961,28 @@ ul {
   }
 }
 
+.article-blocks-item:focus .article-blocks-grow,
+.article-blocks-item:focus-within .article-blocks-grow,
+.article-blocks-item:hover .article-blocks-grow {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.article-blocks-item:hover, .article-blocks-item:focus, .article-blocks-item:active {
+  background-color: $brand_color;
+}
+
+.article-blocks-item:hover *, .article-blocks-item:focus *, .article-blocks-item:active * {
+  color: $brand_text_color;
+}
+
 .article-blocks-item.invisible {
   visibility: hidden;
   margin-bottom: 0;
 }
 
 .article-blocks-item-internal {
-  background-color: transparent;
   border: 1px solid #ddd;
 }
 
@@ -975,6 +991,22 @@ ul {
   font-size: 15px;
   bottom: 5px;
   position: relative;
+}
+
+.article-blocks-grow {
+  width: 90%;
+  left: 5%;
+  padding: 20px 20px 2px;
+  z-index: 1;
+  position: absolute;
+  top: 100%;
+  background-color: $background_color;
+  border: 1px solid $brand_color;
+  border-radius: 0px 0px 4px 4px;
+  color: $brand_color;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
 }
 
 .article-blocks-item-link {
@@ -987,15 +1019,15 @@ ul {
 }
 
 .article-blocks-item-title {
-  margin-top: 15px;
-  margin-bottom: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
 .article-blocks-item-description:not(:empty) {
   margin-bottom: 15px;
   color: $text_color;
-  padding: 0px 20px 2px;
+  display: block;
   text-align: left;
 }
 
