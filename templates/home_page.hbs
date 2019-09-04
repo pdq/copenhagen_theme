@@ -5,58 +5,46 @@
 </section>
 
 <div class="container">
-  <section class="section home-section knowledge-base">
-    <h2>{{t 'knowledge_base'}}</h2>
-    <section class="categories article-blocks">
-      <ul class="article-blocks-list">
+  <section class="section knowledge-base">
+    <section class="categories blocks">
+      <ul class="blocks-list">
         {{#each categories}}
-        {{#each sections}}
-        <li class="article-blocks-item">
-
-          <a href='{{url}}' class="article-blocks-item-link">
-            <h3 class="article-blocks-item-title">{{name}}</h3>
-
-            </h3>
-            <div class="article-blocks-grow">
-              {{#each articles}}
-              <a href='{{url}}' class="article-blocks-item-description">{{title}}</a>
-              {{/each}}
-            </div>
-
-        </li>
-        {{/each}}
-        {{!-- <li class="blocks-item">
-          <a href='{{url}}' class="blocks-item-link">
-            <h4 class="blocks-item-title">{{name}}</h4>
-            <p class="blocks-item-description">{{excerpt description}}</p>
-          </a>
-        </li> --}}
+          {{#if ../has_multiple_categories}}
+            <li class="blocks-item">
+              <a href='{{url}}' class="blocks-item-link">
+                <h4 class="blocks-item-title">{{name}}</h4>
+                <p class="blocks-item-description">{{excerpt description}}</p>
+              </a>
+            </li>
+          {{else}}
+            {{#each sections}}
+              <li class="blocks-item">
+                <a href='{{url}}' class="blocks-item-link">
+                  <h4 class="blocks-item-title">
+                    {{name}}
+                  </h4>
+                  <p class="blocks-item-description">{{excerpt description}}</p>
+                </a>
+              </li>
+            {{/each}}
+          {{/if}}
         {{/each}}
 
         {{!-- Static documentation block --}}
-        <li class="article-blocks-item">
-          <h3 class="article-blocks-item-title">
-            <a href='https://www.pdq.com/documentation/' class="article-blocks-item-link">
+        <li class="blocks-item">
+          
+            <a href='https://www.pdq.com/documentation/' class="blocks-item-link">
+              <h4 class="blocks-item-title">
               Documentation
+              </h4>
+              <p class="blocks-item-description"></p>
             </a>
-          </h3>
-          <div class="article-blocks-grow">
-            <a href='https://link.pdq.com/docs-pdqdeploy?Getting%20Started.pdf'
-              class="article-blocks-item-description">Deploy Getting Started Guide</a>
-            <a href='https://link.pdq.com/?docs-pdqdeploy' class="article-blocks-item-description">Deploy
-              Documentation</a>
-
-            <a href='https://link.pdq.com/docs-pdqinventory?Getting%20Started.pdf'
-              class="article-blocks-item-description">Inventory
-              Getting Started Guide</a>
-            <a href='https://link.pdq.com/?docs-pdqinventory' class="article-blocks-item-description">Inventory
-              Documentation</a>
-          </div>
         </li>
 
         {{!-- These two invisible flex boxes prevent the bottom sections from expanding --}}
-        <li class="article-blocks-item invisible"></li>
-        <li class="article-blocks-item invisible"></li>
+        <li class="blocks-item invisible"></li>
+        <li class="blocks-item invisible"></li>
+
       </ul>
       {{pagination}}
     </section>
