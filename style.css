@@ -840,7 +840,7 @@ ul {
   flex-wrap: wrap;
   justify-content: flex-start;
   list-style: none;
-  padding: 0;
+  padding: 10px 0px 0px;
 }
 
 @media (min-width: 768px) {
