@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
   //Assign highlight.js formatting to pre code blocks:
   codeHighlighting();
 
+  //pre-fill search box on 404 page
+  populateSearch();
+
   function closest(element, selector) {
     if (Element.prototype.closest) {
       return element.closest(selector);
@@ -261,4 +264,20 @@ function codeHighlighting() {
   $("pre").each(function(i, block) {
     hljs.highlightBlock(block);
   });
+}
+
+function populateSearch() {
+  //populate the search on the 404 page
+  var errorPage = document.getElementsByClassName("error-page");
+  var searchBox = document.getElementsByClassName("search");
+  if (errorPage && searchBox) {
+    searchTerms = window.location.pathname
+      .split("/")
+      .pop()
+      .replace(/-/gm, " ")
+      .trim();
+    searchBox = document.getElementById("query");
+    searchBox.focus();
+    searchBox.value = searchTerms;
+  }
 }
