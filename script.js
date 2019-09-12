@@ -241,15 +241,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function redirectBrokenLinks() {
-  if (window.location.href.includes("/knowledge-base/")) {
+  if (window.location.href.indexOf("/knowledge-base/") > -1) {
     let title = window.location.href
       .match(/\/knowledge-base\/.*/gm)[0]
       .replace("/knowledge-base/", "")
       .replace(/-/gm, "+");
     window.location.href = "https://adminarsenal1560455590.zendesk.com/hc/search?query=" + title;
   } else if (
-    window.location.href.includes("/posts/") &&
-    !window.location.href.includes("/community/posts/")
+    window.location.href.indexOf("/posts/") > -1 &&
+    window.location.href.indexOf("/community/posts/") === -1
   ) {
     let title = window.location.href
       .match(/\/posts\/.*/gm)[0]
