@@ -246,7 +246,7 @@ function redirectBrokenLinks() {
       .match(/\/knowledge-base\/.*/gm)[0]
       .replace("/knowledge-base/", "")
       .replace(/-/gm, "+");
-    window.location.href = "https://adminarsenal1560455590.zendesk.com/hc/search?query=" + title;
+    window.location.href = window.location.hostname + "/hc/search?query=" + title;
   } else if (
     window.location.href.indexOf("/posts/") > -1 &&
     window.location.href.indexOf("/community/posts/") === -1
@@ -255,7 +255,7 @@ function redirectBrokenLinks() {
       .match(/\/posts\/.*/gm)[0]
       .replace("/posts/", "")
       .replace(/-/gm, "+");
-    window.location.href = "https://adminarsenal1560455590.zendesk.com/hc/search?query=" + title;
+    window.location.href = window.location.hostname + "/hc/search?query=" + title;
   }
 }
 
