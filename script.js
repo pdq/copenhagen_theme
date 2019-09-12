@@ -268,15 +268,17 @@ function codeHighlighting() {
 
 function populateSearch() {
   //populate the search on the 404 page
-  var errorPage = document.getElementsByClassName("error-page");
-  var searchBox = document.getElementsByClassName("search");
-  if (errorPage && searchBox) {
-    searchTerms = window.location.pathname
+  if (
+    document.getElementsByClassName("error-page").length &&
+    document.getElementsByClassName("search").length
+  ) {
+    var searchTerms = window.location.pathname
       .split("/")
       .pop()
       .replace(/-/gm, " ")
       .trim();
-    searchBox = document.getElementById("query");
+    searchTerms = decodeURI(searchTerms);
+    var searchBox = document.getElementById("query");
     searchBox.focus();
     searchBox.value = searchTerms;
   }

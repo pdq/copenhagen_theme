@@ -727,6 +727,38 @@ ul {
   border: 1px solid #fff;
 }
 
+.errorSearch form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.errorSearch input[type="submit"] {
+  float: right;
+  flex-grow: 1;
+  margin-top: 5px;
+}
+
+.errorSearch input[type="search"] {
+  flex-grow: 6;
+  width: auto;
+}
+
+.errorSearch .search::before {
+  top: 25%;
+}
+
+@media (min-width: 768px) {
+  .errorSearch .search::before {
+    top: 50%;
+  }
+  .errorSearch input[type="submit"] {
+    margin-top: auto;
+  }
+  .errorSearch input[type="search"] {
+    margin-right: 5px;
+  }
+}
+
 /***** Hero component *****/
 .hero {
   background-image: url($assets-pdq-background-support-svg), url($homepage_background_image);

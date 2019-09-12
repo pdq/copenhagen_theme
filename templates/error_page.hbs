@@ -21,9 +21,9 @@
 
   {{#is error 'not_found'}}
   
-  <div>
+  <div class="errorSearch">
     <p>Or, try searching here:</p>
-    {{search submit=false instant=settings.instant_search class="search"}}
+    {{search instant=settings.instant_search class="search"}}
   </div>
   {{/is}}
   
