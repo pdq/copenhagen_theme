@@ -242,20 +242,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function redirectBrokenLinks() {
   if (window.location.href.indexOf("/knowledge-base/") > -1) {
-    let title = window.location.href
+    var title = window.location.href
       .match(/\/knowledge-base\/.*/gm)[0]
       .replace("/knowledge-base/", "")
       .replace(/-/gm, "+");
-    window.location.href = window.location.hostname + "/hc/search?query=" + title;
+    window.location.href =
+      window.location.protocol + "//" + window.location.hostname + "/hc/search?query=" + title;
   } else if (
     window.location.href.indexOf("/posts/") > -1 &&
     window.location.href.indexOf("/community/posts/") === -1
   ) {
-    let title = window.location.href
+    var title = window.location.href
       .match(/\/posts\/.*/gm)[0]
       .replace("/posts/", "")
       .replace(/-/gm, "+");
-    window.location.href = window.location.hostname + "/hc/search?query=" + title;
+    window.location.href =
+      window.location.protocol + "//" + window.location.hostname + "/hc/search?query=" + title;
   }
 }
 
