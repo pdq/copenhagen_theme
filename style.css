@@ -752,7 +752,7 @@ ul {
     top: 50%;
   }
   .errorSearch input[type="submit"] {
-    margin-top: auto;
+    margin-top: 0px;
   }
   .errorSearch input[type="search"] {
     margin-right: 5px;
