@@ -1,7 +1,7 @@
 /***** The place for standard PDQ modifications *****/
 
-/* Danger class for big red danger things */
-.Danger {
+/* danger class for big red danger things */
+.danger {
   color: yellow;
   background-color: #990000;
   padding: 10px;
@@ -9,6 +9,47 @@
   -webkit-animation: flash linear 0.25s infinite;
   animation: flash linear 0.25s infinite;
 }
+
+.important {
+  h2,
+  h3 {
+    text-transform: uppercase;
+    color: #993300;
+  }
+  background-color: #ffb85a;
+  * {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.warning {
+  background-color: #ff4047;
+  h2,
+  h3 {
+    text-transform: uppercase;
+    color: darkred;
+  }
+  color: white;
+  * {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.notes {
+  background-color: #95d480;
+  h2,
+  h3 {
+    text-transform: uppercase;
+    color: darkgreen;
+  }
+  * {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
 /* The animations are just temporary sillyness.*/
 @-webkit-keyframes flash {
   0% {

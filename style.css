@@ -4234,14 +4234,60 @@ html[lang|="th"] .search-result-description em {
 }
 
 /***** The place for standard PDQ modifications *****/
-/* Danger class for big red danger things */
-.Danger {
+/* danger class for big red danger things */
+.danger {
   color: yellow;
   background-color: #990000;
   padding: 10px;
   border: 10px solid yellow;
   -webkit-animation: flash linear 0.25s infinite;
   animation: flash linear 0.25s infinite;
+}
+
+.important {
+  background-color: #ffb85a;
+}
+
+.important h2,
+.important h3 {
+  text-transform: uppercase;
+  color: #993300;
+}
+
+.important * {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.warning {
+  background-color: #ff4047;
+  color: white;
+}
+
+.warning h2,
+.warning h3 {
+  text-transform: uppercase;
+  color: darkred;
+}
+
+.warning * {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.notes {
+  background-color: #95d480;
+}
+
+.notes h2,
+.notes h3 {
+  text-transform: uppercase;
+  color: darkgreen;
+}
+
+.notes * {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 /* The animations are just temporary sillyness.*/
