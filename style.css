@@ -109,12 +109,12 @@ textarea:focus {
 }
 
 .container {
-  max-width: 1160px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 0 5%;
 }
 
-@media (min-width: 1160px) {
+@media (min-width: 1360px) {
   .container {
     padding: 0;
     width: 90%;
@@ -133,12 +133,12 @@ ul {
 }
 
 .error-page {
-  max-width: 1160px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 0 5%;
 }
 
-@media (min-width: 1160px) {
+@media (min-width: 1360px) {
   .error-page {
     padding: 0;
     width: 90%;
@@ -425,7 +425,7 @@ ul {
 
 /***** Header *****/
 .header {
-  max-width: 1160px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 0 5%;
   position: relative;
@@ -435,7 +435,7 @@ ul {
   justify-content: space-between;
 }
 
-@media (min-width: 1160px) {
+@media (min-width: 1360px) {
   .header {
     padding: 0;
     width: 90%;
@@ -628,14 +628,14 @@ ul {
 }
 
 .footer-inner {
-  max-width: 1160px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 0 5%;
   display: flex;
   justify-content: space-between;
 }
 
-@media (min-width: 1160px) {
+@media (min-width: 1360px) {
   .footer-inner {
     padding: 0;
     width: 90%;
@@ -4234,60 +4234,62 @@ html[lang|="th"] .search-result-description em {
 }
 
 /***** The place for standard PDQ modifications *****/
-/* danger class for big red danger things */
-.danger {
-  color: yellow;
-  background-color: #990000;
-  padding: 10px;
-  border: 10px solid yellow;
-  -webkit-animation: flash linear 0.25s infinite;
-  animation: flash linear 0.25s infinite;
-}
-
 .important {
   background-color: #ffb85a;
+  padding: 10px;
 }
 
 .important h2,
 .important h3 {
   text-transform: uppercase;
-  color: #993300;
 }
 
 .important * {
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-bottom: 0;
 }
 
 .warning {
   background-color: #ff4047;
   color: white;
+  padding: 10px;
 }
 
 .warning h2,
 .warning h3 {
   text-transform: uppercase;
-  color: darkred;
+  color: white;
 }
 
 .warning * {
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-bottom: 0;
 }
 
 .notes {
-  background-color: #95d480;
+  background-color: #a0cb3a;
+  padding: 10px;
 }
 
 .notes h2,
 .notes h3 {
   text-transform: uppercase;
-  color: darkgreen;
 }
 
 .notes * {
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-bottom: 0;
+}
+
+/* danger class for big red danger things */
+.danger {
+  color: yellow;
+  background-color: #990000;
+  padding: 10px;
+  -webkit-animation: flash linear 0.25s infinite;
+  animation: flash linear 0.25s infinite;
+}
+
+.danger h2,
+.danger h3 {
+  text-transform: uppercase;
 }
 
 /* The animations are just temporary sillyness.*/
@@ -4306,7 +4308,6 @@ html[lang|="th"] .search-result-description em {
   }
   100% {
     opacity: 1;
-    border: none;
   }
 }
 
@@ -4325,7 +4326,6 @@ html[lang|="th"] .search-result-description em {
   }
   100% {
     opacity: 1;
-    border: none;
   }
 }
 
