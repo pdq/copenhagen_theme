@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function() {
   //pre-fill search box on 404 page
   populateSearch();
 
+  //pre-fill Request submission form
+  populateSubmitForm();
+
   function closest(element, selector) {
     if (Element.prototype.closest) {
       return element.closest(selector);
@@ -14,8 +17,10 @@ document.addEventListener("DOMContentLoaded", function() {
     do {
       if (
         (Element.prototype.matches && element.matches(selector)) ||
-        (Element.prototype.msMatchesSelector && element.msMatchesSelector(selector)) ||
-        (Element.prototype.webkitMatchesSelector && element.webkitMatchesSelector(selector))
+        (Element.prototype.msMatchesSelector &&
+          element.msMatchesSelector(selector)) ||
+        (Element.prototype.webkitMatchesSelector &&
+          element.webkitMatchesSelector(selector))
       ) {
         return element;
       }
@@ -25,7 +30,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // social share popups
-  Array.prototype.forEach.call(document.querySelectorAll(".share a"), function(anchor) {
+  Array.prototype.forEach.call(document.querySelectorAll(".share a"), function(
+    anchor
+  ) {
     anchor.addEventListener("click", function(e) {
       e.preventDefault();
       window.open(this.href, "", "height = 500, width = 500");
@@ -45,14 +52,24 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // show form controls when the textarea receives focus or backbutton is used and value exists
-  var commentContainerTextarea = document.querySelector(".comment-container textarea"),
-    commentContainerFormControls = document.querySelector(".comment-form-controls, .comment-ccs");
+  var commentContainerTextarea = document.querySelector(
+      ".comment-container textarea"
+    ),
+    commentContainerFormControls = document.querySelector(
+      ".comment-form-controls, .comment-ccs"
+    );
 
   if (commentContainerTextarea) {
-    commentContainerTextarea.addEventListener("focus", function focusCommentContainerTextarea() {
-      commentContainerFormControls.style.display = "block";
-      commentContainerTextarea.removeEventListener("focus", focusCommentContainerTextarea);
-    });
+    commentContainerTextarea.addEventListener(
+      "focus",
+      function focusCommentContainerTextarea() {
+        commentContainerFormControls.style.display = "block";
+        commentContainerTextarea.removeEventListener(
+          "focus",
+          focusCommentContainerTextarea
+        );
+      }
+    );
 
     if (commentContainerTextarea.value !== "") {
       commentContainerFormControls.style.display = "block";
@@ -137,7 +154,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Submit requests filter form on status or organization change in the request list page
   Array.prototype.forEach.call(
-    document.querySelectorAll("#request-status-select, #request-organization-select"),
+    document.querySelectorAll(
+      "#request-status-select, #request-organization-select"
+    ),
     function(el) {
       el.addEventListener("change", function(e) {
         e.stopPropagation();
@@ -200,10 +219,14 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Toggles expanded aria to collapsible elements
-  var collapsible = document.querySelectorAll(".collapsible-nav, .collapsible-sidebar");
+  var collapsible = document.querySelectorAll(
+    ".collapsible-nav, .collapsible-sidebar"
+  );
 
   Array.prototype.forEach.call(collapsible, function(el) {
-    var toggle = el.querySelector(".collapsible-nav-toggle, .collapsible-sidebar-toggle");
+    var toggle = el.querySelector(
+      ".collapsible-nav-toggle, .collapsible-sidebar-toggle"
+    );
 
     el.addEventListener("click", function(e) {
       toggleNavigation(toggle, this);
@@ -218,7 +241,9 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Submit organization form in the request page
-  var requestOrganisationSelect = document.querySelector("#request-organization select");
+  var requestOrganisationSelect = document.querySelector(
+    "#request-organization select"
+  );
 
   if (requestOrganisationSelect) {
     requestOrganisationSelect.addEventListener("change", function() {
@@ -247,7 +272,11 @@ function redirectBrokenLinks() {
       .replace("/knowledge-base/", "")
       .replace(/-/gm, "+");
     window.location.href =
-      window.location.protocol + "//" + window.location.hostname + "/hc/search?query=" + title;
+      window.location.protocol +
+      "//" +
+      window.location.hostname +
+      "/hc/search?query=" +
+      title;
   } else if (
     window.location.href.indexOf("/posts/") > -1 &&
     window.location.href.indexOf("/community/posts/") === -1
@@ -257,7 +286,11 @@ function redirectBrokenLinks() {
       .replace("/posts/", "")
       .replace(/-/gm, "+");
     window.location.href =
-      window.location.protocol + "//" + window.location.hostname + "/hc/search?query=" + title;
+      window.location.protocol +
+      "//" +
+      window.location.hostname +
+      "/hc/search?query=" +
+      title;
   }
 }
 
@@ -284,4 +317,47 @@ function populateSearch() {
     searchBox.focus();
     searchBox.value = searchTerms;
   }
+}
+
+function populateSubmitForm() {
+  if (document.getElementsByClassName("request-form").length) {
+    console.log("filling form");
+    var qs = window.location.search;
+    var params = getQueryParams(qs);
+
+    var product = "";
+    if (params.product) {
+      if (params.product === "deploy") product = "pdq_deploy";
+      if (params.product === "inventory") product = "pdq_inventory";
+    }
+    //Product field
+    document.getElementById("request_custom_fields_304389").value = product;
+
+    //Version field
+    document.getElementById(
+      "request_custom_fields_22752330"
+    ).value = params.version ? params.version : "";
+
+    //Email field doesn't exist if you're signed in.
+    var emailField = document.getElementById(
+      "request_anonymous_requester_email"
+    );
+    if (emailField && params.email) emailField.value = params.email;
+  }
+}
+
+//This function borrowed from here: https://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-get-parameters
+//Using this function to be cross-browser compatible and to avoid dependencies.
+function getQueryParams(qs) {
+  qs = qs.split("+").join(" ");
+
+  var params = {},
+    tokens,
+    re = /[?&]?([^=]+)=([^&]*)/g;
+
+  while ((tokens = re.exec(qs))) {
+    params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+  }
+
+  return params;
 }
